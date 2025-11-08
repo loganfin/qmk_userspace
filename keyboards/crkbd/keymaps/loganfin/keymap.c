@@ -262,6 +262,7 @@ uint16_t const PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // TODO: How do we get here?
     //      - When the trackpoint is touched
     //      - Also via a keyboard layer switch
+    //      - We might want to keep a shift key in here for shift scrolling
     [_Mouse] = LAYOUT_split_3x6_3(
         KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,                   KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
         KC_NO, MS_WHLL, MS_WHLD, MS_WHLU, MS_WHLR, KC_NO,           KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
