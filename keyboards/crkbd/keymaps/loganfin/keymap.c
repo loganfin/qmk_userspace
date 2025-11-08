@@ -461,6 +461,53 @@ bool rgb_matrix_indicators_user()
 }
 
 ////////////////////////////////////////////////////////////////////////////////
+// OLED display
+
+#ifdef OLED_ENABLE
+bool oled_task_user(void)
+{
+    // Host Keyboard Layer Status
+    oled_write_P(PSTR("Layer: "), false);
+
+    switch (get_highest_layer(layer_state)) {
+    case _Alpha:
+        oled_write_P(PSTR("Alpha\n"), false);
+        break;
+    case _Symbol:
+        oled_write_P(PSTR("Symbol\n"), false);
+        break;
+    case _Number:
+        oled_write_P(PSTR("Number\n"), false);
+        break;
+    case _Navigation:
+        oled_write_P(PSTR("Navigation\n"), false);
+        break;
+    case _Function:
+        oled_write_P(PSTR("Function\n"), false);
+        break;
+    case _Mouse:
+        oled_write_P(PSTR("Mouse\n"), false);
+        break;
+    case _Control:
+        oled_write_P(PSTR("Control\n"), false);
+        break;
+    default:
+        // Or use the write_ln shortcut over adding '\n' to the end of your
+        // string
+        oled_write_ln_P(PSTR("Undefined"), false);
+    }
+
+    // Host Keyboard LED Status
+    led_t led_state = host_keyboard_led_state();
+    oled_write_P(led_state.num_lock ? PSTR("NUM ") : PSTR("    "), false);
+    oled_write_P(led_state.caps_lock ? PSTR("CAP ") : PSTR("    "), false);
+    oled_write_P(led_state.scroll_lock ? PSTR("SCR ") : PSTR("    "), false);
+
+    return false;
+}
+#endif
+
+////////////////////////////////////////////////////////////////////////////////
 // Debug code
 
 // #define MY_DEBUG
